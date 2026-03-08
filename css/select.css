@@ -1,0 +1,32 @@
+:root {
+    --color-blue: #77BEF0;
+    --color-yellow:#FFCB61;
+    --color-orange:#FF894F;
+    --color-rose:#EA5B6F;
+}
+
+body{
+    background-color: var(--color-blue);
+}
+
+#title{
+    justify-content: center;
+    text-align: center;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+#houseicon{
+    position: absolute;
+    left: 20px;
+    font-size: 48px;
+    cursor: pointer;
+}
+
+.pgm{
+    
+}
