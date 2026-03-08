@@ -9,9 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=house" />    <link rel="stylesheet" href="../css/jouer.css">
+    <script src="../components/program-card/program-card.js"></script>
     <title>Jouer</title>
 </head>
-<body>  
+<body>
+    <template id="program-card">
+        <div class="pgm">
+            <div class="card"></div>
+            <p></p>
+        </div>
+    </template>
+
     <header>
         <i class="material-symbols-outlined" id="houseicon">house</i>
         <h1 id="title">Sélection de programme</h1>
@@ -20,62 +28,72 @@
     <section class="section" id="main">
         <h1 id="warning"> Appelles un adulte ! </h1>
         <div id="programmes">
+            <program-card 
+                program-name="Programme 1" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-            <div class="pgm">
-                <div class="card">
+            <program-card 
+                program-name="Programme 2" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-                </div>
-                <p>Programme 2 </p>
-            </div>
+            <program-card 
+                program-name="Programme 3" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-            <div class="pgm">
-                <div class="card">
+            <program-card 
+                program-name="Programme 4" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-                </div>
-                <p>Programme 3 </p>
-            </div>
+            <program-card 
+                program-name="Programme 5" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-            <div class="pgm">
-                <div class="card">
+            <program-card 
+                program-name="Programme 6" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-                </div>
-                <p>Programme 4 </p>
-            </div>
+            <program-card 
+                program-name="Programme 7" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
-            <div class="pgm">
-                <div class="card">
-
-                </div>
-                <p>Programme 5 </p>
-            </div>
-
-            <div class="pgm">
-                <div class="card">
-
-                </div>
-                <p>Programme 6 </p>
-            </div>
-
-            <div class="pgm">
-                <div class="card">
-
-                </div>
-                <p>Programme 7 </p>
-            </div>
-
-            <div class="pgm">
-                <div class="card">
-
-                </div>
-                <p>Programme 8 </p>
-            </div>
-            <div class="pgm" id="custim">
-                <p>Programme personnalisé</p>
-            </div>
+            <program-card 
+                program-name="Programme 8" 
+                image="" 
+                border-color="black" 
+                border-width="3px">
+            </program-card>
 
         </div>
 
     </section>
+
+    <script>
+        document.addEventListener('program-selected', (event) => {
+            console.log('Programme sélectionné:', event.detail.programName);
+            alert(`Vous avez sélectionné : ${event.detail.programName}`);
+        });
+    </script>
 
 </body>
 </html>
