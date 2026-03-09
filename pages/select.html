@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=house" />    <link rel="stylesheet" href="../css/jouer.css">
-    <script src="../components/program-card/program-card.js"></script>
     <title>Jouer</title>
 </head>
 <body>
@@ -83,17 +82,15 @@
                 border-color="black" 
                 border-width="3px">
             </program-card>
-
         </div>
 
     </section>
-
+    <script src="../components/program-card/program-card.js"></script>
     <script>
         document.addEventListener('program-selected', (event) => {
             console.log('Programme sélectionné:', event.detail.programName);
             alert(`Vous avez sélectionné : ${event.detail.programName}`);
         });
     </script>
-
 </body>
 </html>

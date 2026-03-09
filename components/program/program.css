@@ -1,0 +1,44 @@
+body {
+    background-color: var(--color-blue);
+}
+
+header {
+    text-align: center;
+    color:var(--color-yellow);
+    background-color: var(--color-orange);
+}
+
+main {
+    display:grid;
+    grid-template-columns: auto auto;
+}
+
+.liste-points {
+    display: grid;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.liste-points li {
+    border: 2px solid var(--color-rose);
+    padding: 10px;
+    width: 40px;
+    text-align: center;
+    border-radius: 6px;
+    background-color: var(--color-orange);
+    font-weight: bold;
+    list-style: none;
+}
+
+#maCamera {
+    width: auto;
+    max-width: 40em;
+    height: auto;
+    border: 2px solid var(--color-rose);
+    border-radius: 8px;
+    background-color: var(--color-rose);
+
+    transform: scaleX(-1); /* Inverse la vidéo */
+}
+
