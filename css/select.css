@@ -20,9 +20,14 @@ header{
     padding: 15px;
 }
 
-#houseicon{
+header a {
     position: absolute;
     left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#houseicon{
     font-size: 48px;
     cursor: pointer;
 }
@@ -46,4 +51,9 @@ header{
     justify-content: center;
     text-align: center;
     color: var(--color-yellow);
+}
+
+a{
+    color: black;
+    text-decoration: none;
 }
