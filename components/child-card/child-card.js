@@ -107,6 +107,11 @@ class ChildCard extends HTMLElement {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         this.dispatchAction(action);
+
+        if (action === 'stats') {
+          const target = this.getAttribute('stats-href') || 'stats.html';
+          window.location.href = target;
+        }
       });
     };
 
