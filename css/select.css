@@ -9,28 +9,7 @@ body{
     background-color: var(--color-blue);
 }
 
-#title{
-    justify-content: center;
-    text-align: center;
-}
-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-}
 
-header a {
-    position: absolute;
-    left: 20px;
-    display: flex;
-    align-items: center;
-}
-
-#houseicon{
-    font-size: 48px;
-    cursor: pointer;
-}
 
 #programmes {
     display: grid;
