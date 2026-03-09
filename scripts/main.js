@@ -32,11 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // program.html
-    if (window.location.pathname.endsWith('program.html')) {
+    if (window.location.pathname.endsWith('/program.html')) {
+        programhtml();
+    }
+});
+
+async function programhtml() {
         const programTitle = document.querySelector('header h1');
         const programName = sessionStorage.getItem('selectedProgram');
         if (programTitle && programName) {
             programTitle.textContent = 'Programme : ' + programName;
         }
-    }
-});
+
+        const exercices = await fetchExercicesAvecPhotos();
+        const images = exercices.map(ex => ex.images.principale);
+        const imageAleatoire = images[Math.floor(Math.random() * images.length)];
+        const img = document.createElement('img');
+        img.src = imageAleatoire;
+        document.getElementById('image').appendChild(img);
+}

@@ -45,3 +45,11 @@ header {
 
     transform: scaleX(-1); /* Inverse la vidéo */
 }
+
+#image img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
