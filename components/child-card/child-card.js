@@ -112,6 +112,11 @@ class ChildCard extends HTMLElement {
           const target = this.getAttribute('stats-href') || 'stats.html';
           window.location.href = target;
         }
+
+        if (action === 'play') {
+          const target = this.getAttribute('play-href') || 'select-program.html';
+          window.location.href = target;
+        }
       });
     };
 
