@@ -4,9 +4,34 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DysCo</title>
+        <link rel="stylesheet" href="css/main.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=house" />
     </head>
-    <body></body>
+    <body>
+        <header>
+        <a href="../index.html">
+            <i class="material-symbols-outlined" id="houseicon">house</i>
+        </a>
+        <h1 id="title">Sélection de Profil</h1>
+    </header>
+
+    <section class="log" >
+        <button class="log-btn">Se connecter en admin</button>
+        <button class="log-btn">Se connecter en Enfant</button>
+    </section>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        document.querySelectorAll('.log-btn')[0].addEventListener('click', () => {
+            AdminMode = true;
+        });
+        document.querySelectorAll('.log-btn')[1].addEventListener('click', () => {
+            AdminMode = false;
+
+        });
+    </script>
+    </body>
 </html>

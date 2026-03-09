@@ -3,7 +3,7 @@ let scoreTotal = 0;
 
 // 2. On sélectionne les éléments HTML dont on a besoin
 const affichageScore = document.getElementById('valeurScore');
-const boutonsPoints = document.querySelectorAll('.liste-points li');
+const boutonsPoints = document.querySelectorAll('.liste-score li');
 
 // 3. On ajoute un "écouteur de clic" sur chaque numéro de la liste
 boutonsPoints.forEach(function(bouton) {

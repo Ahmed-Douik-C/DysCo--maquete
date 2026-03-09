@@ -8,32 +8,35 @@ class ProgramCard extends HTMLElement {
     return ['program-name', 'image', 'border-color', 'border-width'];
   }
 
-  connectedCallback() {
-    this.render();
+  async connectedCallback() {
+    await this.render();
     this.setupEventListeners();
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  async attributeChangedCallback(name, oldValue, newValue) {
+    if (!this.isConnected) return;
     if (oldValue !== newValue) {
-        this.render();
+        await this.render();
         this.setupEventListeners();
     }
   }
 
-  render() {
-    const template = document.getElementById('program-card');
-    if (!template) return;
-
+  async render() {
     const programName = this.getAttribute('program-name') || 'Programme';
     const image = this.getAttribute('image') || '';
     const borderColor = this.getAttribute('border-color') || '#000000';
     const borderWidth = this.getAttribute('border-width') || '2px';
 
-    const content = template.content.cloneNode(true);
+    const response = await fetch('../components/custom-card/card.html');
+    if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
+    const html = await response.text();
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    const content = wrapper.firstElementChild;
 
     const linkStyle = document.createElement('link');
     linkStyle.setAttribute('rel', 'stylesheet');
-    linkStyle.setAttribute('href', '../components/program-card/program-card.css');
+    linkStyle.setAttribute('href', '../components/custom-card/card.css');
 
     const dynamicStyle = document.createElement('style');
     dynamicStyle.textContent = `
@@ -60,12 +63,13 @@ class ProgramCard extends HTMLElement {
     this.shadowRoot.appendChild(content);
   }
 
+
   setupEventListeners() {
     const pgm = this.shadowRoot.querySelector('.pgm');
     if (pgm) {
       pgm.addEventListener('click', () => {
         const programName = this.getAttribute('program-name') || 'Programme';
-                const event = new CustomEvent('program-selected', {
+                const event = new CustomEvent('card-selected', {
           detail: {
             programName: programName,
             image: this.getAttribute('image') || ''
@@ -80,4 +84,4 @@ class ProgramCard extends HTMLElement {
   }
 }
 
-customElements.define('program-card', ProgramCard);
+customElements.define('custom-card', ProgramCard);

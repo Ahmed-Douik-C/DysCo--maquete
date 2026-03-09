@@ -1,1 +1,1 @@
-var AdminMode = true;
+var AdminMode = false;
