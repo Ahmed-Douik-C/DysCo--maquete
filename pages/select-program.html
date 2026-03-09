@@ -8,10 +8,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=house" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>Programmes</title>
 </head>
 <body>
+    <template id="child-card">
+        <div class="child">
+            <p class="child-name"></p>
+            <div class="child-card" role="button" tabindex="0"></div>
+            <div class="actions">
+                <a class="action action--play" href="#" data-action="play">Play</a>
+                <a class="action action--icon" href="#" data-action="settings" aria-label="Settings">
+                    <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+                </a>
+                <a class="action action--icon" href="#" data-action="stats" aria-label="Stats">
+                    <span class="material-symbols-outlined" aria-hidden="true">bar_chart</span>
+                </a>
+            </div>
+        </div>
+    </template>
+
     <header>
         <a href="../index.html">
         <i class="material-symbols-outlined" id="houseicon">house</i>
@@ -22,75 +38,31 @@
     <section class="section" id="main">
         <h1 id="warning"> Appelles un adulte ! </h1>
         <div id="programmes">
-            <custom-card 
-                program-name="Programme 1" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 2" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 3" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 4" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 5" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 6" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 7" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
-
-            <custom-card 
-                program-name="Programme 8" 
-                image="" 
-                border-color="black" 
-                border-width="3px">
-            </custom-card>
+            <child-card child-name="Programme 1" hide-stats></child-card>
+            <child-card child-name="Programme 2" hide-stats></child-card>
+            <child-card child-name="Programme 3" hide-stats></child-card>
+            <child-card child-name="Programme 4" hide-stats></child-card>
+            <child-card child-name="Programme 5" hide-stats></child-card>
+            <child-card child-name="Programme 6" hide-stats></child-card>
+            <child-card child-name="Programme 7" hide-stats></child-card>
+            <child-card child-name="Programme 8" hide-stats></child-card>
         </div>
 
     </section>
     <script src="../scripts/main.js"></script>
-    <script src="../components/custom-card/card.js"></script>
+    <script src="../components/child-card/child-card.js"></script>
     <script>
         if (!AdminMode) {
             document.getElementById('warning').style.display = 'block';
         } else {
             document.getElementById('warning').style.display = 'none';
         }
-        document.addEventListener('card-selected', (event) => {
-            console.log('Programme sélectionné:', event.detail.programName);
-            alert(`Vous avez sélectionné : ${event.detail.programName}`);
+
+        document.addEventListener('child-action', (event) => {
+            if (event.detail?.action === 'select' || event.detail?.action === 'play') {
+                console.log('Programme sélectionné:', event.detail.childName);
+                alert(`Vous avez sélectionné : ${event.detail.childName}`);
+            }
         });
     </script>
 </body>

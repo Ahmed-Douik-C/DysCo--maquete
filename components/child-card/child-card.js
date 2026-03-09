@@ -5,7 +5,7 @@ class ChildCard extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['child-name', 'color'];
+    return ['child-name', 'color', 'hide-stats'];
   }
 
   connectedCallback() {
@@ -62,10 +62,19 @@ class ChildCard extends HTMLElement {
     const nameEl = content.querySelector('.child-name');
     const cardEl = content.querySelector('.child-card');
     const actionsEl = content.querySelector('.actions');
+    const hideStats = this.hasAttribute('hide-stats');
   
     if (nameEl) nameEl.textContent = childName;
     if (cardEl) cardEl.setAttribute('aria-label', childName);
-    if (actionsEl) actionsEl.setAttribute('aria-label', `Actions ${childName}`);
+    if (actionsEl) {
+      actionsEl.setAttribute('aria-label', `Actions ${childName}`);
+      if (hideStats) {
+        const statsAction = actionsEl.querySelector('[data-action="stats"]');
+        if (statsAction) {
+          statsAction.remove();
+        }
+      }
+    }
   
     // Attach everything to shadow root
     this.shadowRoot.innerHTML = '';
