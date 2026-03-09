@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/select-enfant.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="../css/jouer.css">
+    <title>Sélection d'enfant</title>
+</head>
+<body>
+    <template id="child-card">
+        <div class="child">
+            <p class="child-name"></p>
+            <div class="child-card" role="button" tabindex="0"></div>
+            <div class="actions">
+                <a class="action action--play" href="#" data-action="play">Play</a>
+                <a class="action action--icon" href="#" data-action="settings" aria-label="Settings">
+                    <span class="material-symbols-outlined" aria-hidden="true">settings</span>
+                </a>
+                <a class="action action--icon" href="#" data-action="stats" aria-label="Stats">
+                    <span class="material-symbols-outlined" aria-hidden="true">bar_chart</span>
+                </a>
+            </div>
+        </div>
+    </template>
+
+    <header>
+        <i class="material-symbols-outlined" id="houseicon">house</i>
+        <h1 id="title">Sélection d'enfant</h1>
+    </header>
+
+    <section class="section" id="main">
+        <h1 id="warning">Choisis ton enfant</h1>
+
+        <div id="enfants" aria-label="Liste des enfants">
+            <child-card child-name="Enfant 1" color="blue"></child-card>
+            <child-card child-name="Enfant 2" color="yellow"></child-card>
+            <child-card child-name="Enfant 3" color="orange"></child-card>
+            <child-card child-name="Enfant 4" color="rose"></child-card>
+            <child-card child-name="Enfant 5" color="blue"></child-card>
+            <child-card child-name="Enfant 6" color="yellow"></child-card>
+            <child-card child-name="Enfant 7" color="orange"></child-card>
+            <child-card child-name="Enfant 8" color="rose"></child-card>
+        </div>
+
+    </section>
+
+    <script src="../components/child-card/child-card.js"></script>
+    <script>
+        document.addEventListener('child-action', (event) => {
+            console.log('Action enfant:', event.detail);
+        });
+    </script>
+</body>
+</html>
