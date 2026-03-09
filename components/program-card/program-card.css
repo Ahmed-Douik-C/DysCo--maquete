@@ -1,3 +1,42 @@
-.card{
-    border: solid 2px black;
+:host {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.pgm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+
+.pgm:hover {
+  transform: scale(1.05);
+}
+
+.card {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
 }

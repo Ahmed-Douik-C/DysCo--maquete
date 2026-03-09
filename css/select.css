@@ -27,6 +27,23 @@ header{
     cursor: pointer;
 }
 
+#programmes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .pgm{
     
+    display: flex;
+    justify-content: center;
+}
+
+#warning{
+    justify-content: center;
+    text-align: center;
+    color: var(--color-yellow);
 }
