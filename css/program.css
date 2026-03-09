@@ -8,19 +8,23 @@ header {
     background-color: var(--color-orange);
 }
 
-main {
-    display:grid;
-    grid-template-columns: auto auto;
+.content {
+    display : flex;
+    flex-wrap:wrap;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 20px;
 }
 
-.liste-points {
+.liste-score {
     display: grid;
     gap: 8px;
     cursor: pointer;
     user-select: none;
 }
 
-.liste-points li {
+.liste-score li {
     border: 2px solid var(--color-rose);
     padding: 10px;
     width: 40px;
@@ -31,9 +35,9 @@ main {
     list-style: none;
 }
 
-#maCamera {
+#camera {
     width: auto;
-    max-width: 40em;
+    max-width: 60em;
     height: auto;
     border: 2px solid var(--color-rose);
     border-radius: 8px;
@@ -41,4 +45,3 @@ main {
 
     transform: scaleX(-1); /* Inverse la vidéo */
 }
-

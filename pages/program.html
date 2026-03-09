@@ -4,27 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href = "/css/main.css">
-    <link rel="stylesheet" href = "program.css">
+    <link rel="stylesheet" href = "/css/program.css">
 </head>
 <body>
 <header>
     <h1>Programme : bubbles</h1>
 </header>
-<main>
-    <video id="maCamera" autoplay playsinline></video>
+<main class="content">
+    <video id="camera" autoplay playsinline></video>
     <div id = "Infos" >
         <h2 class="titre-score">Score : <span id="valeurScore">0</span></h2>
-        <ul class = "liste-points">
+        <ul class = "liste-score">
             <li>1</li>
             <li>2</li>
             <li>3</li>
             <li>4</li>
+            <li>5</li>
         </ul>
-        <h2>Timer : <span id="valeurTimer">30</span>s</h2>
+        <h2>Timer : <span id="valeurTimer">0</span>s / 30s</h2>
     </div>
 </main>
 <script src="/scripts/camera.js"></script>
 <script src="/scripts/score.js"></script>
-<script src="/scripts/timer.js"></script>
+<script src="/scripts/chrono.js"></script>
 </body>
 </html>

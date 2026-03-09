@@ -1,5 +1,5 @@
 // On sélectionne l'élément vidéo dans la page HTML
-const elementVideo = document.getElementById('maCamera');
+const elementVideo = document.getElementById('camera');
 
 // On vérifie si le navigateur supporte l'accès aux médias
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
