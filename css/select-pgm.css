@@ -10,12 +10,7 @@ body{
 }
 
 
-#houseicon{
-    position: absolute;
-    left: 20px;
-    font-size: 48px;
-    cursor: pointer;
-}
+
 
 #programmes {
     display: grid;

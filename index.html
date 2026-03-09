@@ -19,19 +19,14 @@
     </header>
 
     <section class="log" >
-        <button class="log-btn">Se connecter en admin</button>
-        <button class="log-btn">Se connecter en Enfant</button>
+        <a href="pages/select-enfant.html">
+            <button class="log-btn">Se connecter en admin</button>
+        </a>
+        <a href="pages/select-program.html">
+            <button class="log-btn">Se connecter en Enfant</button>
+        </a>
     </section>
 
     <script src="scripts/main.js"></script>
-    <script>
-        document.querySelectorAll('.log-btn')[0].addEventListener('click', () => {
-            AdminMode = true;
-        });
-        document.querySelectorAll('.log-btn')[1].addEventListener('click', () => {
-            AdminMode = false;
-
-        });
-    </script>
     </body>
 </html>
