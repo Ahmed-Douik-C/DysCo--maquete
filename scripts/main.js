@@ -5,10 +5,38 @@ function setAdminMode(value) {
     sessionStorage.setItem('AdminMode', String(value));
 }
 
-document.querySelectorAll('.log-btn')[0].addEventListener('click', () => {
-    setAdminMode(true);
+document.addEventListener('DOMContentLoaded', () => {
+    // index.html
+    const logBtns = document.querySelectorAll('.log-btn');
+    if (logBtns.length > 0) {
+        logBtns[0].closest('a').addEventListener('click', (e) => {
+            e.preventDefault();
+            setAdminMode(true);
+            window.location.href = logBtns[0].closest('a').href;
+        });
+        logBtns[1].closest('a').addEventListener('click', (e) => {
+            e.preventDefault();
+            setAdminMode(false);
+            window.location.href = logBtns[1].closest('a').href;
+        });
+    }
 
-});
-document.querySelectorAll('.log-btn')[1].addEventListener('click', () => {
-    setAdminMode(false);
+    // select-program.html
+    const warning = document.getElementById('warning');
+    if (warning) {
+        warning.style.display = AdminMode ? 'none' : 'block';
+        document.addEventListener('card-selected', (event) => {
+            sessionStorage.setItem('selectedProgram', event.detail.programName);
+            window.location.href = 'program.html';
+        });
+    }
+
+    // program.html
+    if (window.location.pathname.endsWith('program.html')) {
+        const programTitle = document.querySelector('header h1');
+        const programName = sessionStorage.getItem('selectedProgram');
+        if (programTitle && programName) {
+            programTitle.textContent = 'Programme : ' + programName;
+        }
+    }
 });

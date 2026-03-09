@@ -82,16 +82,5 @@
     </section>
     <script src="../scripts/main.js"></script>
     <script src="../components/custom-card/card.js"></script>
-    <script>
-        if (!AdminMode) {
-            document.getElementById('warning').style.display = 'block';
-        } else {
-            document.getElementById('warning').style.display = 'none';
-        }
-        document.addEventListener('card-selected', (event) => {
-            console.log('Programme sélectionné:', event.detail.programName);
-            alert(`Vous avez sélectionné : ${event.detail.programName}`);
-        });
-    </script>
 </body>
 </html>
