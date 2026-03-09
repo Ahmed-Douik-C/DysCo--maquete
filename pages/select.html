@@ -12,77 +12,82 @@
     <title>Programmes</title>
 </head>
 <body>
+    <template id="program-card">
+        <div class="pgm">
+            <div class="card"></div>
+            <p></p>
+        </div>
+    </template>
+
     <header>
-        <a href="../index.html">
-            <i class="material-symbols-outlined" id="houseicon">house</i>
-        </a>
+        <i class="material-symbols-outlined" id="houseicon">house</i>
         <h1 id="title">Sélection de programme</h1>
     </header>
 
     <section class="section" id="main">
         <h1 id="warning"> Appelles un adulte ! </h1>
         <div id="programmes">
-            <custom-card 
+            <program-card 
                 program-name="Programme 1" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 2" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 3" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 4" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 5" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 6" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 7" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
 
-            <custom-card 
+            <program-card 
                 program-name="Programme 8" 
                 image="" 
                 border-color="black" 
                 border-width="3px">
-            </custom-card>
+            </program-card>
         </div>
 
     </section>
-    <script src="../components/custom-card/card.js"></script>
+    <script src="../components/program-card/program-card.js"></script>
     <script>
-        document.addEventListener('card-selected', (event) => {
+        document.addEventListener('program-selected', (event) => {
             console.log('Programme sélectionné:', event.detail.programName);
             alert(`Vous avez sélectionné : ${event.detail.programName}`);
         });
