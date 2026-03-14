@@ -3,6 +3,25 @@ var AdminMode = sessionStorage.getItem('AdminMode') === 'true';
 function setAdminMode(value) {
     AdminMode = value;
     sessionStorage.setItem('AdminMode', String(value));
+    if (!value && !sessionStorage.getItem('selectedChild')) {
+        sessionStorage.setItem('selectedChild', 'Enfant');
+    }
+}
+
+function updateSessionStatus() {
+    const statusEl = document.getElementById('session-status');
+    if (!statusEl) {
+        return;
+    }
+
+    const mode = AdminMode ? 'Admin' : 'Enfant';
+    const selectedChild = sessionStorage.getItem('selectedChild') || 'non selectionne';
+
+    if (AdminMode) {
+        statusEl.textContent = `Connecte en tant que : ${mode} (enfant : ${selectedChild})`;
+    } else {
+        statusEl.textContent = `Connecte en tant que : ${mode} (${selectedChild})`;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,9 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const warning = document.getElementById('warning');
     if (warning) {
         warning.style.display = AdminMode ? 'none' : 'block';
-        document.addEventListener('card-selected', (event) => {
-            sessionStorage.setItem('selectedProgram', event.detail.programName);
-            window.location.href = 'program.html';
+        document.addEventListener('child-action', (event) => {
+            if (event.detail.action === 'play') {
+                sessionStorage.setItem('selectedProgram', event.detail.childName);
+                window.location.href = 'program.html';
+            }
         });
     }
 
@@ -35,6 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('/program.html')) {
         programhtml();
     }
+
+    // select-enfant.html
+    if (window.location.pathname.endsWith('/select-enfant.html')) {
+        document.addEventListener('child-action', (event) => {
+            if (event?.detail?.childName) {
+                sessionStorage.setItem('selectedChild', event.detail.childName);
+                updateSessionStatus();
+            }
+        });
+    }
+
+    updateSessionStatus();
 });
 
 async function programhtml() {
@@ -46,8 +79,8 @@ async function programhtml() {
 
         const exercices = await fetchExercicesAvecPhotos();
         const images = exercices.map(ex => ex.images.principale);
-        const imageAleatoire = images[Math.floor(Math.random() * images.length)];
-        const img = document.createElement('img');
-        img.src = imageAleatoire;
-        document.getElementById('image').appendChild(img);
+        window.programImages = images;
+        setRandomProgramImage();
 }
+
+

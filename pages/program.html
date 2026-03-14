@@ -9,8 +9,10 @@
 <body>
 <header>
     <h1>Programme : bubbles</h1>
+    <p id="session-status" class="session-status"></p>
 </header>
 <main class="content">
+    <p id="encouragement"></p>
     <video id="camera" autoplay playsinline></video>
     <div id = "Infos" >
         <h2 class="titre-score">Score : <span id="valeurScore">0</span></h2>
@@ -21,13 +23,14 @@
             <li>4</li>
             <li>5</li>
         </ul>
-        <h2>Timer : <span id="valeurTimer">0</span>s / 30s</h2>
+        <h2>Timer : <span id="valeurTimer">0</span></h2>
     </div>
     <div id="image"></div>
+    <a href="select-program.html">
+    <button id="fin">Finir le programme</button>
+    </a>
 </main>
-<script src="/scripts/camera.js"></script>
-<script src="/scripts/score.js"></script>
-<script src="/scripts/chrono.js"></script>
+<script src="/scripts/game.js"></script>
 <script src="/scripts/api.js"></script>
 <script src="/scripts/main.js"></script>
 </body>
