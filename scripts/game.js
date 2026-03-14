@@ -16,10 +16,15 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 // Score
 let scoreTotal = 0;
+let moveCount = 0;
+const maxMoves = 20;
+let timerId = null;
 
 const affichageScore = document.getElementById('valeurScore');
 const boutonsPoints = document.querySelectorAll('.liste-score li');
 const encouragement = document.getElementById('encouragement');
+const moveCounter = document.getElementById('move-counter');
+const finalScore = document.getElementById('final-score');
 const encouragementMessages = [
     'Wow !',
     'Bravo !',
@@ -42,20 +47,50 @@ function showEncouragement() {
     encouragement.classList.add('encouragement-pop');
 }
 
+function updateMoveCounter() {
+    if (moveCounter) {
+        moveCounter.textContent = `${moveCount}/${maxMoves}`;
+    }
+}
+
+function finishGame() {
+    sessionStorage.setItem('lastScore', String(scoreTotal));
+    sessionStorage.setItem('lastMoves', String(moveCount));
+    sessionStorage.setItem('lastTimeSeconds', String(temps));
+    if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+    }
+    if (finalScore) {
+        finalScore.textContent = `Bravo ! Score : ${scoreTotal}`;
+    }
+}
+
 boutonsPoints.forEach(function(bouton) {
     bouton.addEventListener('click', function() {
+        if (moveCount >= maxMoves) {
+            return;
+        }
         const pointsAjoutes = parseInt(this.innerText);
 
         scoreTotal += pointsAjoutes;
         affichageScore.innerText = scoreTotal;
+        moveCount += 1;
+        updateMoveCounter();
 
         if (typeof window.setRandomProgramImage === 'function') {
             window.setRandomProgramImage();
         }
 
         showEncouragement();
+
+        if (moveCount >= maxMoves) {
+            finishGame();
+        }
     });
 });
+
+updateMoveCounter();
 
 // Chrono
 let temps = 0;
@@ -63,7 +98,7 @@ let temps = 0;
 const affichageTimer = document.getElementById('valeurTimer');
 
 function demarrerTimer() {
-    const intervalle = setInterval(function() {
+    timerId = setInterval(function() {
         temps++;
 
         const minutes = Math.floor(temps / 60);
@@ -75,7 +110,6 @@ function demarrerTimer() {
         }
     }, 1000);
 }
-
 demarrerTimer();
 function renderProgramImage(imageUrl) {
     const container = document.getElementById('image');

@@ -83,11 +83,28 @@ header {
     display: block;
 }
 
+#move-counter {
+    margin: 6px 0 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-yellow);
+}
+
+#final-score {
+    margin: 0 0 0;
+    font-weight: bold;
+    font-size: 2em;
+    color: rgb(26, 117, 26);
+    width: 100%;
+    text-align: center;
+}
+
 
 #fin{
     display: block;
     margin: 0px auto 0;
-    width: 100em;
+    width: 100%;
+    max-width: 320px;
     height: 3em;
     border-radius: 25px;
     background-color: var(--color-rose);
