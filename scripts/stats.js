@@ -18,7 +18,7 @@ new Chart(document.getElementById("eloChart"), {
     labels,
     datasets: [
       {
-        label: "Elo",
+        label: "Score",
         data: eloHistory,
         borderColor: "#378add",
         backgroundColor: "rgba(55,138,221,0.08)",
