@@ -38,14 +38,14 @@
     <section class="section" id="main">
         <h1 id="warning"> Appelles un adulte ! </h1>
         <div id="programmes">
-            <child-card child-name="Programme 1" hide-stats></child-card>
-            <child-card child-name="Programme 2" hide-stats></child-card>
-            <child-card child-name="Programme 3" hide-stats></child-card>
-            <child-card child-name="Programme 4" hide-stats></child-card>
-            <child-card child-name="Programme 5" hide-stats></child-card>
-            <child-card child-name="Programme 6" hide-stats></child-card>
-            <child-card child-name="Programme 7" hide-stats></child-card>
-            <child-card child-name="Programme 8" hide-stats></child-card>
+            <child-card child-name="Programme 1" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 2" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 3" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 4" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 5" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 6" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 7" hide-stats play-href="./program.html"></child-card>
+            <child-card child-name="Programme 8" hide-stats play-href="./program.html"></child-card>
         </div>
 
     </section>
@@ -57,13 +57,6 @@
         } else {
             document.getElementById('warning').style.display = 'none';
         }
-
-        document.addEventListener('child-action', (event) => {
-            if (event.detail?.action === 'select' || event.detail?.action === 'play') {
-                console.log('Programme sélectionné:', event.detail.childName);
-                alert(`Vous avez sélectionné : ${event.detail.childName}`);
-            }
-        });
     </script>
 </body>
 </html>
