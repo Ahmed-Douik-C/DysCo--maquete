@@ -21,6 +21,14 @@ header{
     justify-content: center;
     align-items: center;
     padding: 15px;
+    position: relative;
+}
+
+.session-status {
+    position: absolute;
+    right: 20px;
+    font-weight: bold;
+    font-size: 0.95em;
 }
 
 header a {

@@ -1,5 +1,7 @@
+html,
 body {
     background-color: var(--color-blue);
+    overflow: hidden;
 }
 
 header {
@@ -35,13 +37,85 @@ header {
     list-style: none;
 }
 
+#encouragement {
+    margin: 10px 0 6px;
+    min-height: 1.2em;
+    color: rgb(26, 117, 26);
+    font-weight: bold;
+    font-size: 2em;
+    position: absolute;
+    z-index: 1;
+    padding-left:18%;
+    text-align: center;
+
+}
+
+.encouragement-pop {
+    animation: encouragement-pop 400ms ease-out;
+}
+
+@keyframes encouragement-pop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 #camera {
     width: auto;
     max-width: 60em;
     height: auto;
     border: 2px solid var(--color-rose);
     border-radius: 8px;
-    background-color: var(--color-rose);
-
+    background-color: var(--color-rose);    
     transform: scaleX(-1); /* Inverse la vidéo */
+}
+
+#image img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+#move-counter {
+    margin: 6px 0 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-yellow);
+}
+
+#final-score {
+    margin: 0 0 0;
+    font-weight: bold;
+    font-size: 2em;
+    color: rgb(26, 117, 26);
+    width: 100%;
+    text-align: center;
+}
+
+
+#fin{
+    display: block;
+    margin: 0px auto 0;
+    width: 100%;
+    max-width: 320px;
+    height: 3em;
+    border-radius: 25px;
+    background-color: var(--color-rose);
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: solid 3px black;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
 }

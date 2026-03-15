@@ -128,7 +128,8 @@ class ChildCard extends HTMLElement {
         }
 
         if (action === 'play') {
-          const target = this.getAttribute('play-href') || 'select-program.html';
+          sessionStorage.setItem('selectedProgram', this.getAttribute('child-name') || 'Programme');
+          const target = el.getAttribute('href') || this.getAttribute('play-href') || 'select-program.html';
           window.location.href = target;
         }
 
