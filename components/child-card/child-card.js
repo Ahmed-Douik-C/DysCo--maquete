@@ -74,6 +74,11 @@ class ChildCard extends HTMLElement {
           statsAction.remove();
         }
       }
+      const isAdmin = sessionStorage.getItem('AdminMode') === 'true';
+      if (!isAdmin) {
+        const settingsAction = actionsEl.querySelector('[data-action="settings"]');
+        if (settingsAction) settingsAction.remove();
+      }
     }
   
     // Attach everything to shadow root
@@ -125,6 +130,14 @@ class ChildCard extends HTMLElement {
         if (action === 'play') {
           const target = this.getAttribute('play-href') || 'select-program.html';
           window.location.href = target;
+        }
+
+        if (action === 'settings') {
+          const explicitHref = this.getAttribute('settings-href');
+          const defaultSettingsHref = (window.location.pathname || window.location.href).includes('select-program')
+            ? 'config-program.html'
+            : 'config-enfant.html';
+          window.location.href = explicitHref || defaultSettingsHref;
         }
       });
     };
