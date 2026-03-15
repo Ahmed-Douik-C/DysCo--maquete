@@ -1,9 +1,6 @@
 /* ── Données ── */
 /* Remplace ce tableau par tes vraies données */
-const eloHistory = [
-  1200, 1220, 1208, 1235, 1250, 1238, 1260, 1245, 1270, 1288, 1275, 1295, 1310,
-  1298, 1320,
-];
+const eloHistory = [20, 28, 24, 35, 42, 38, 50, 45, 58, 65, 60, 72, 80, 75, 88];
 
 const labels = eloHistory.map((_, i) => (i === 0 ? "Départ" : "#" + i));
 
