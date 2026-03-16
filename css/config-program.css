@@ -1,0 +1,323 @@
+/* ── Reset & base ───────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    color: #1a1a18;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* ── Panel title ────────────────────────────────────────── */
+.panel-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #888780;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+/* ── Gallery grid ───────────────────────────────────────── */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: grab;
+    border: 1px solid rgba(0, 0, 0, 1);
+    position: relative;
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.gallery-item:active {
+    cursor: grabbing;
+}
+
+.gallery-item:hover {
+    transform: scale(1.04);
+    border-color: rgba(0, 0, 0, 1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+.gallery-item.used {
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+/* Checkmark badge on used images */
+.gallery-item .badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1d9e75;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.gallery-item.used .badge {
+    display: flex;
+}
+
+/* ── Gallery items : image ou placeholder ────────────────── */
+.gallery-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item .placeholder-label {
+    font-size: 10px;
+    color: #b4b2a9;
+    text-align: center;
+    padding: 4px;
+    line-height: 1.3;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Thumbnail placeholder dans la liste */
+.slot-thumb.placeholder-thumb {
+    background: #f0ede8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot-thumb.placeholder-thumb span {
+    font-size: 9px;
+    color: #b4b2a9;
+    text-align: center;
+    padding: 2px;
+    line-height: 1.2;
+}
+
+/* ── Add gallery button ──────────────────────────────────── */
+.add-gallery-btn {
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    background: transparent;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 13px;
+    color: #888780;
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    transition:
+        background 0.12s ease,
+        color 0.12s ease;
+}
+
+.add-gallery-btn:hover {
+    background: #fff;
+    color: #1a1a18;
+    border-color: rgba(0, 0, 0, 1);
+}
+
+/* ── List slots ─────────────────────────────────────────── */
+.list-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.list-slot {
+    border: 1.5px dashed rgba(0, 0, 0, 1);
+    border-radius: 12px;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 12px;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+    cursor: pointer;
+    background: #fff;
+}
+
+.list-slot.drag-over {
+    border-color: #378add;
+    background: #ebf4fd;
+}
+
+.list-slot.filled {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 1);
+    background: #faf9f6;
+    cursor: default;
+}
+
+/* Thumbnail inside a filled slot */
+.slot-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.slot-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Empty slot placeholder icon */
+.slot-empty-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: #f0ede8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.slot-empty-icon svg {
+    opacity: 0.28;
+    color: #1a1a18;
+}
+
+/* Text area inside a slot */
+.slot-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.slot-label input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a18;
+    font-family: inherit;
+    outline: none;
+}
+
+.slot-label input::placeholder {
+    color: #b4b2a9;
+    font-weight: 400;
+}
+
+.slot-sublabel {
+    font-size: 11px;
+    color: #b4b2a9;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Remove button */
+.slot-remove {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f0ede8;
+    border: 1px solid rgba(0, 0, 0, 1);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition:
+        background 0.12s ease,
+        border-color 0.12s ease;
+}
+
+.slot-remove:hover {
+    background: #fde8e8;
+    border-color: #f09595;
+}
+
+.slot-remove:hover svg {
+    stroke: #a32d2d;
+}
+
+.slot-remove svg {
+    display: block;
+}
+
+.list-slot.filled .slot-remove {
+    display: flex;
+}
+
+/* ── Add slot button ────────────────────────────────────── */
+.add-slot-btn {
+    border: 1px solid rgba(0, 0, 0, 1);
+    background: transparent;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 13px;
+    color: #888780;
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+    transition:
+        background 0.12s ease,
+        color 0.12s ease;
+}
+
+.add-slot-btn:hover {
+    background: #fff;
+    color: #1a1a18;
+    border-color: rgba(0, 0, 0, 1);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Image Picker List</title>
+        <link rel="stylesheet" href="../css/main.css" />
+        <link rel="stylesheet" href="../css/config-program.css" />
+    </head>
+    <body>
+        <div class="layout">
+            <!-- Panneau gauche : galerie -->
+            <div class="panel">
+                <p class="panel-title">Bibliothèque d'images</p>
+                <div class="gallery" id="gallery"></div>
+                <button class="add-gallery-btn" onclick="addGallerySlot()">
+                    + Ajouter un mouvement
+                </button>
+            </div>
+
+            <!-- Panneau droit : liste -->
+            <div class="panel">
+                <p class="panel-title">Programme</p>
+                <div class="list-panel" id="list-panel"></div>
+                <button class="add-slot-btn" onclick="addSlot()">
+                    + Ajouter un élément
+                </button>
+            </div>
+        </div>
+        <script src="../scripts/config-program.js"></script>
+        <script src="../scripts/main.js"></script>
+    </body>
+</html>
