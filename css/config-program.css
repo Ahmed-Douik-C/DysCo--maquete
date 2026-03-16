@@ -113,7 +113,7 @@ body {
 
 .gallery-item .placeholder-label {
     font-size: 10px;
-    color: #b4b2a9;
+    color: #000000;
     text-align: center;
     padding: 4px;
     line-height: 1.3;
@@ -145,7 +145,7 @@ body {
     border-radius: 8px;
     padding: 9px 16px;
     font-size: 13px;
-    color: #888780;
+    color: #000000;
     cursor: pointer;
     width: 100%;
     font-family: inherit;
@@ -191,7 +191,7 @@ body {
 .list-slot.filled {
     border-style: solid;
     border-color: rgba(0, 0, 0, 1);
-    background: #faf9f6;
+    background: #94d2a5;
     cursor: default;
 }
 
@@ -246,7 +246,7 @@ body {
 }
 
 .slot-label input::placeholder {
-    color: #b4b2a9;
+    color: #000000;
     font-weight: 400;
 }
 
