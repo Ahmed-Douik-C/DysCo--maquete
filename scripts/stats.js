@@ -2,7 +2,7 @@
 /* Remplace ce tableau par tes vraies données */
 const eloHistory = [20, 28, 24, 35, 42, 38, 50, 45, 58, 65, 60, 72, 80, 75, 88];
 
-const labels = eloHistory.map((_, i) => (i === 0 ? "Départ" : "#" + i));
+const labels = eloHistory.map((_, i) => "Partie " + (i + 1));
 
 const pointColors = eloHistory.map((v, i) => {
   if (i === 0) return "#378add";
@@ -34,19 +34,35 @@ new Chart(document.getElementById("eloChart"), {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: (ctx) => " Elo : " + ctx.raw,
+          label: (ctx) => `Score ${ctx.raw}`,
         },
       },
     },
     scales: {
       x: {
-        ticks: { font: { size: 12 }, color: "#888" },
+        title: {
+          display: true,
+          text: "Parties",
+          font: { size: 18, weight: "bold" },
+          color: "#333",
+        },
+        ticks: { font: { size: 16 }, color: "#555" },
         grid: { color: "rgba(0,0,0,0.06)" },
       },
       y: {
-        ticks: { font: { size: 12 }, color: "#888" },
+        min: 0,
+        max: 100,
+        title: {
+          display: true,
+          text: "Score",
+          font: { size: 18, weight: "bold" },
+          color: "#333",
+        },
+        ticks: { font: { size: 16 }, color: "#555" },
         grid: { color: "rgba(0,0,0,0.06)" },
       },
     },
   },
 });
+
+document.getElementById("programs-done").textContent = eloHistory.length;
