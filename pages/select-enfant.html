@@ -1,64 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/select-enfant.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link rel="stylesheet" href="../css/jouer.css">
-    <title>Sélection d'enfant</title>
-</head>
-<body>
-    <template id="child-card">
-        <div class="child">
-            <p class="child-name"></p>
-            <div class="child-card" role="button" tabindex="0"></div>
-            <div class="actions">
-                <a class="action action--play" href="../pages/select-program.html" data-action="play" aria-label="Jouer">
-                    <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
-                </a>
-                <a class="action action--icon" href="#" data-action="settings" aria-label="Settings">
-                    <span class="material-symbols-outlined" aria-hidden="true">settings</span>
-                </a>
-                <a class="action action--icon" href="#" data-action="stats" aria-label="Stats">
-                    <span class="material-symbols-outlined" aria-hidden="true">bar_chart</span>
-                </a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/select-enfant.css" />
+        <link rel="stylesheet" href="../css/main.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <link rel="stylesheet" href="../css/jouer.css" />
+        <title>Sélection d'enfant</title>
+    </head>
+    <body>
+        <template id="child-card">
+            <div class="child">
+                <p class="child-name"></p>
+                <div class="child-card" role="button" tabindex="0"></div>
+                <div class="actions">
+                    <a
+                        class="action action--play"
+                        href="../pages/select-program.html"
+                        data-action="play"
+                        aria-label="Jouer"
+                    >
+                        <span
+                            class="material-symbols-outlined"
+                            aria-hidden="true"
+                            >play_arrow</span
+                        >
+                    </a>
+                    <a
+                        class="action action--icon"
+                        href="#"
+                        data-action="settings"
+                        aria-label="Settings"
+                    >
+                        <span
+                            class="material-symbols-outlined"
+                            aria-hidden="true"
+                            >settings</span
+                        >
+                    </a>
+                    <a
+                        class="action action--icon"
+                        href="#"
+                        data-action="stats"
+                        aria-label="Stats"
+                    >
+                        <span
+                            class="material-symbols-outlined"
+                            aria-hidden="true"
+                            >bar_chart</span
+                        >
+                    </a>
+                </div>
             </div>
-        </div>
-    </template>
+        </template>
 
-    <header>
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <i class="material-symbols-outlined" id="houseicon">house</i>
-        </a>
-        <h1 id="title">Sélection d'enfant</h1>
-        <p id="session-status" class="session-status"></p>
-    </header>
+        <header>
+            <a href="../index.html" aria-label="Retour à l'accueil">
+                <i class="material-symbols-outlined" id="houseicon">house</i>
+            </a>
+            <h1 id="title">Sélection d'enfant</h1>
+            <p id="session-status" class="session-status"></p>
+        </header>
 
-    <section class="section" id="main">
-        <div id="enfants" aria-label="Liste des enfants">
-            <child-card child-name="Enfant 1"></child-card>
-            <child-card child-name="Enfant 2"></child-card>
-            <child-card child-name="Enfant 3"></child-card>
-            <child-card child-name="Enfant 4"></child-card>
-            <child-card child-name="Enfant 5"></child-card>
-            <child-card child-name="Enfant 6"></child-card>
-            <child-card child-name="Enfant 7"></child-card>
-            <child-card child-name="Enfant 8"></child-card>
-        </div>
+        <section class="section" id="main">
+            <div class="search-bar">
+                <span class="material-symbols-outlined search-bar__icon">search</span>
+                <input type="text" id="search-input" class="search-bar__input" placeholder="Rechercher un enfant…" aria-label="Rechercher un enfant">
+            </div>
+            <div id="enfants" aria-label="Liste des enfants">
+                <child-card
+                    child-name="Emma"
+                    image="../assets/images/Portraits2_01.png"
+                ></child-card>
+                <child-card
+                    child-name="Thomas"
+                    image="../assets/images/Portraits2_07.png"
+                ></child-card>
+                <child-card
+                    child-name="Ayoub"
+                    image="../assets/images/Portraits2_13.png"
+                ></child-card>
+                <child-card child-name="Enfant 4"></child-card>
+                <child-card child-name="Enfant 5"></child-card>
+                <child-card child-name="Enfant 6"></child-card>
+                <child-card child-name="Enfant 7"></child-card>
+                <child-card child-name="Enfant 8"></child-card>
+            </div>
+            <a href="config-enfant.html" class="btn-add-child" aria-label="Ajouter un enfant">
+                <span class="material-symbols-outlined">add</span>
+                Ajouter un enfant
+            </a>
+        </section>
 
-    </section>
+        <script src="../scripts/main.js"></script>
+        <script src="../components/child-card/child-card.js"></script>
+        <script>
+            document.addEventListener("child-action", (event) => {
+                console.log("Action enfant:", event.detail);
+            });
 
-    <script src="../scripts/main.js"></script>
-    <script src="../components/child-card/child-card.js"></script>
-    <script>
-        document.addEventListener('child-action', (event) => {
-            console.log('Action enfant:', event.detail);
-        });
-    </script>
-</body>
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                document.querySelectorAll('child-card').forEach(card => {
+                    const name = (card.getAttribute('child-name') || '').toLowerCase();
+                    card.style.display = name.includes(query) ? '' : 'none';
+                });
+            });
+        </script>
+    </body>
 </html>

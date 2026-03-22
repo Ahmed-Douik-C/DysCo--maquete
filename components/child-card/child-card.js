@@ -5,7 +5,7 @@ class ChildCard extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['child-name', 'color', 'hide-stats'];
+    return ['child-name', 'color', 'hide-stats', 'image'];
   }
 
   connectedCallback() {
@@ -65,7 +65,17 @@ class ChildCard extends HTMLElement {
     const hideStats = this.hasAttribute('hide-stats');
   
     if (nameEl) nameEl.textContent = childName;
-    if (cardEl) cardEl.setAttribute('aria-label', childName);
+    if (cardEl) {
+      cardEl.setAttribute('aria-label', childName);
+
+      const image = this.getAttribute('image') || '';
+      if (image) {
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = childName;
+        cardEl.appendChild(img);
+      }
+    }
     if (actionsEl) {
       actionsEl.setAttribute('aria-label', `Actions ${childName}`);
       if (hideStats) {

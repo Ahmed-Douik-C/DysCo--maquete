@@ -1,3 +1,30 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 500px;
+    margin: 1rem auto 0.5rem;
+    padding: 0.6rem 1rem;
+    background: #fff;
+    border: 3px solid rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.search-bar__icon {
+    font-size: 24px;
+    color: #888;
+}
+
+.search-bar__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-family: inherit;
+    background: transparent;
+}
+
 #enfants {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -5,4 +32,34 @@
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.btn-add-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 1rem auto 2rem;
+    width: fit-content;
+    padding: 0.6rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 999px;
+    border: 3px solid rgba(0, 0, 0, 0.18);
+    background: var(--color-rose, #ea5b6f);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.btn-add-child:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+}
+
+.btn-add-child .material-symbols-outlined {
+    font-size: 22px;
 }
