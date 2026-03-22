@@ -78,6 +78,10 @@
                     placeholder="Rechercher un programme…"
                     aria-label="Rechercher un programme"
                 />
+                <button type="button" id="btn-personnalise" class="btn-personnalise" aria-label="Afficher mes programmes">
+                    <span class="material-symbols-outlined">filter_list</span>
+                    Personnalisé
+                </button>
             </div>
             <div id="programmes">
                 <child-card
@@ -85,36 +89,42 @@
                     hide-stats
                     play-href="./program-bubble.html"
                     image="../resources/bulle.png"
+                    data-assigned="Emma,Thomas"
                 ></child-card>
                 <child-card
                     child-name="Coordination - Difficile"
                     hide-stats
                     play-href="./program.html"
                     image="../resources/movement_011.jpg"
+                    data-assigned="Emma,Ayoub"
                 ></child-card>
                 <child-card
                     child-name="Coordination - Facile"
                     hide-stats
                     play-href="./program.html"
                     image="../resources/movement_012.jpg"
+                    data-assigned="Emma"
                 ></child-card>
                 <child-card
                     child-name="Motricité - Lent"
                     hide-stats
                     play-href="./program.html"
                     image="../resources/movement_013.jpg"
+                    data-assigned="Thomas"
                 ></child-card>
                 <child-card
                     child-name="Motricité fine - Écriture"
                     hide-stats
                     play-href="./program.html"
                     image="../resources/movement_014.jpg"
+                    data-assigned="Thomas,Ayoub"
                 ></child-card>
                 <child-card
                     child-name="Motricité - Rapide"
                     hide-stats
                     play-href="./program.html"
                     image="../resources/movement_015.jpg"
+                    data-assigned="Ayoub"
                 ></child-card>
                 <child-card
                     child-name="Attention - Mémoire"
@@ -153,17 +163,27 @@
                 document.getElementById("warning").style.display = "none";
             }
 
-            document
-                .getElementById("search-input")
-                .addEventListener("input", (e) => {
-                    const query = e.target.value.toLowerCase().trim();
-                    document.querySelectorAll("child-card").forEach((card) => {
-                        const name = (
-                            card.getAttribute("child-name") || ""
-                        ).toLowerCase();
-                        card.style.display = name.includes(query) ? "" : "none";
-                    });
+            const selectedChild = sessionStorage.getItem('selectedChild') || '';
+            let personnaliseActive = false;
+
+            function applyFilters() {
+                const query = document.getElementById('search-input').value.toLowerCase().trim();
+                document.querySelectorAll('#programmes child-card').forEach(card => {
+                    const name = (card.getAttribute('child-name') || '').toLowerCase();
+                    const assigned = card.getAttribute('data-assigned') || '';
+                    const matchSearch = name.includes(query);
+                    const matchPersonnalise = !personnaliseActive || assigned.split(',').map(s => s.trim()).includes(selectedChild);
+                    card.style.display = (matchSearch && matchPersonnalise) ? '' : 'none';
                 });
+            }
+
+            document.getElementById('btn-personnalise').addEventListener('click', () => {
+                personnaliseActive = !personnaliseActive;
+                document.getElementById('btn-personnalise').classList.toggle('active', personnaliseActive);
+                applyFilters();
+            });
+
+            document.getElementById('search-input').addEventListener('input', applyFilters);
         </script>
     </body>
 </html>
