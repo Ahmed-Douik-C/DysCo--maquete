@@ -1,3 +1,80 @@
+// ── Mock program profiles ──────────────────────────────────
+const programProfiles = {
+    'Coordination - Difficile': {
+        name: 'Coordination - Difficile',
+        coverImage: '../resources/movement_011.jpg',
+        tags: ['Dyspraxie', 'Troubles moteurs'],
+        movements: [
+            { name: 'Saut groupé', image: null },
+            { name: 'Équilibre unipodal', image: null },
+            { name: 'Rotation du tronc', image: null }
+        ]
+    },
+    'Coordination - Facile': {
+        name: 'Coordination - Facile',
+        coverImage: '../resources/movement_012.jpg',
+        tags: ['Dyspraxie'],
+        movements: [
+            { name: 'Marche talon-pointe', image: null },
+            { name: 'Claquement de mains', image: null }
+        ]
+    },
+    'Motricité - Lent': {
+        name: 'Motricité - Lent',
+        coverImage: '../resources/movement_013.jpg',
+        tags: ['Troubles moteurs', 'Dysgraphie'],
+        movements: [
+            { name: 'Ramper', image: null },
+            { name: 'Rotation du tronc', image: null }
+        ]
+    },
+    'Motricité fine - Écriture': {
+        name: 'Motricité fine - Écriture',
+        coverImage: '../resources/movement_014.jpg',
+        tags: ['Dysgraphie', 'Dyslexie'],
+        movements: [
+            { name: 'Claquement de mains', image: null },
+            { name: 'Lancer de balle', image: null }
+        ]
+    },
+    'Motricité - Rapide': {
+        name: 'Motricité - Rapide',
+        coverImage: '../resources/movement_015.jpg',
+        tags: ['TDAH', 'Troubles de l\'attention'],
+        movements: [
+            { name: 'Saut à pieds joints', image: null },
+            { name: 'Saut groupé', image: null },
+            { name: 'Lancer de balle', image: null }
+        ]
+    },
+    'Attention - Mémoire': {
+        name: 'Attention - Mémoire',
+        coverImage: '../resources/movement_016.jpg',
+        tags: ['TDAH', 'Troubles de l\'attention'],
+        movements: [
+            { name: 'Équilibre unipodal', image: null }
+        ]
+    },
+    'Spatialisation - Gauche/Droite': {
+        name: 'Spatialisation - Gauche/Droite',
+        coverImage: '../resources/movement_017.jpg',
+        tags: ['Dyspraxie', 'Dyslexie'],
+        movements: [
+            { name: 'Rotation du tronc', image: null },
+            { name: 'Marche talon-pointe', image: null }
+        ]
+    },
+    'Spatialisation - Orientation': {
+        name: 'Spatialisation - Orientation',
+        coverImage: '../resources/movement_018.jpg',
+        tags: ['Dyspraxie'],
+        movements: [
+            { name: 'Ramper', image: null },
+            { name: 'Saut groupé', image: null }
+        ]
+    }
+};
+
 // ── Program data structure ───────────────────────────────────
 let program = {
     name: "",
@@ -31,9 +108,16 @@ let insertAfterIndex = null;
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
     initializeEventListeners();
+    loadProgramFromStorage();
     renderSequence();
     renderLibrary();
-    loadProgramFromStorage();
+
+    // Update header title with program name
+    const selectedProgram = sessionStorage.getItem('selectedProgram');
+    if (selectedProgram) {
+        const titleEl = document.querySelector('header h1');
+        if (titleEl) titleEl.textContent = 'Configuration : ' + selectedProgram;
+    }
 });
 
 // ── Event listeners setup ─────────────────────────────────────
@@ -416,6 +500,30 @@ function confirmNewMovement() {
 
 // ── Storage ───────────────────────────────────────────────────
 function loadProgramFromStorage() {
+    // Check for selected program from mock profiles first
+    const selectedProgram = sessionStorage.getItem('selectedProgram');
+    if (selectedProgram && programProfiles[selectedProgram]) {
+        const profile = programProfiles[selectedProgram];
+        program.name = profile.name;
+        program.tags = [...profile.tags];
+        program.movements = profile.movements.map(m => ({ ...m }));
+
+        document.getElementById("input-program-name").value = program.name;
+
+        // Set cover image
+        if (profile.coverImage) {
+            const img = document.getElementById("cover-image-img");
+            img.src = profile.coverImage;
+            img.removeAttribute("hidden");
+        }
+
+        updateTagChips();
+        renderSequence();
+        renderLibrary();
+        return;
+    }
+
+    // Fallback: load from sessionStorage
     const saved = sessionStorage.getItem("program");
     if (saved) {
         program = JSON.parse(saved);
