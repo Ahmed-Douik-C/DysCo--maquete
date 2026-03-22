@@ -54,6 +54,13 @@ function createBubble() {
     const posX = Math.random() * 90; // Entre 0% et 90% pour ne pas coller au bord droit
     bubble.style.left = `${posX}%`;
 
+    // CORRECTION : Position verticale aléatoire NEGATIVE de départ
+    // pour qu'elles n'apparaissent pas toutes en même temps et en haut.
+    // La bulle part de -size px, donc elle est invisible au début.
+    // L'animation CSS 'bubble-fall' la fait ensuite descendre.
+    const posY = -(size + (Math.random() * 200)); // Position top aléatoire négative
+    bubble.style.top = `${posY}px`;
+
     // Durée de chute aléatoire (vitesse)
     const fallDuration = Math.random() * (BUBBLE_FALL_DURATION_MAX - BUBBLE_FALL_DURATION_MIN) + BUBBLE_FALL_DURATION_MIN;
     bubble.style.animationDuration = `${fallDuration}s`;
@@ -77,7 +84,15 @@ function popBubble(bubble) {
     // Éviter de cliquer plusieurs fois sur la même bulle
     if (bubble.classList.contains('pop')) return;
 
+    const style = window.getComputedStyle(bubble);
+    const currentTop = style.getPropertyValue('top');
+
+    bubble.style.top = currentTop; // Fige la position verticale
+
+    bubble.style.animation = 'none';
+
     bubble.classList.add('pop');
+
     scoreTotal += 1; // 1 point par bulle
     affichageScore.innerText = scoreTotal;
 
@@ -144,8 +159,7 @@ function endGame() {
     // Sauvegarder le score pour la page de fin
     sessionStorage.setItem('lastScore', String(scoreTotal));
 
-    // Rediriger vers la page de sélection ou afficher un score final
-    // Pour cet exemple, on peut juste afficher une alerte
+    // Afficher un score final
     alert(`Partie terminée ! Score final : ${scoreTotal}`);
 
     // Optionnel : rediriger
