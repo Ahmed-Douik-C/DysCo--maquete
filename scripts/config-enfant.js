@@ -5,6 +5,41 @@
         updateSessionStatus();
     }
 
+    // --- Mock profiles ---
+    var profiles = {
+        'Emma': { prenom: 'Emma', nom: 'Dupont', dob: '2018-03-15', photo: '../assets/images/Portraits2_01.png', tags: ['Dyspraxie', 'Dyslexie'] },
+        'Thomas': { prenom: 'Thomas', nom: 'Martin', dob: '2017-09-22', photo: '../assets/images/Portraits2_07.png', tags: ['TDAH', 'Troubles de l\'attention'] },
+        'Ayoub': { prenom: 'Ayoub', nom: 'Benali', dob: '2019-01-10', photo: '../assets/images/Portraits2_13.png', tags: ['Dysgraphie'] }
+    };
+
+    // --- Pre-fill form if a child is selected ---
+    var selectedChild = sessionStorage.getItem('selectedChild') || '';
+    var profile = profiles[selectedChild];
+
+    if (profile) {
+        var prenomInput = document.getElementById('input-prenom');
+        var nomInput = document.getElementById('input-nom');
+        var dobInput = document.getElementById('input-dob');
+        var photoImg = document.getElementById('profile-photo-img');
+
+        if (prenomInput) prenomInput.value = profile.prenom;
+        if (nomInput) nomInput.value = profile.nom;
+        if (dobInput) dobInput.value = profile.dob;
+
+        if (photoImg && profile.photo) {
+            photoImg.src = profile.photo;
+            photoImg.removeAttribute('hidden');
+            var placeholder = document.querySelector('.profile-photo-placeholder');
+            if (placeholder) placeholder.style.display = 'none';
+        }
+
+        // Activate matching tags
+        profile.tags.forEach(function (tagName) {
+            var chip = document.querySelector('.tag-chip[data-tag="' + tagName + '"]');
+            if (chip) chip.classList.add('tag-chip--active');
+        });
+    }
+
     // --- Tag toggling ---
     document.querySelectorAll('.tag-chip').forEach(function (chip) {
         if (chip.classList.contains('tag-chip--add')) return;

@@ -144,6 +144,7 @@ class ChildCard extends HTMLElement {
           }
 
         if (action === 'settings') {
+          sessionStorage.setItem('selectedChild', this.getAttribute('child-name') || 'Enfant');
           const explicitHref = this.getAttribute('settings-href');
           const defaultSettingsHref = (window.location.pathname || window.location.href).includes('select-program')
             ? 'config-program.html'
