@@ -1,42 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Image Picker List</title>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-
-        <link rel="stylesheet" href="../css/main.css" />
-        <link rel="stylesheet" href="../css/config-program.css" />
-    </head>
-    <body>
-        <header>
-            <a href="../index.html" aria-label="Retour à l'accueil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/config-program.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Sarina&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <title>Configuration programme</title>
+</head>
+<body>
+    <header>
+        <a href="../index.html" aria-label="Retour à l'accueil">
             <i class="material-symbols-outlined" id="houseicon">house</i>
-            </a>
-            <h1>Configuration programmes</h1>
-            <p id="session-status" class="session-status"></p>
-        </header>
-        <div class="layout">
-            <!-- Panneau gauche : galerie -->
-            <div class="panel">
-                <p class="panel-title">Bibliothèque d'images</p>
-                <div class="gallery" id="gallery"></div>
-                <button class="add-gallery-btn" onclick="addGallerySlot()">
-                    + Ajouter un mouvement
-                </button>
-            </div>
+        </a>
+        <h1>Configuration programme</h1>
+        <p id="session-status" class="session-status"></p>
+    </header>
 
-            <!-- Panneau droit : liste -->
-            <div class="panel">
-                <p class="panel-title">Programme</p>
-                <div class="list-panel" id="list-panel"></div>
-                <button class="add-slot-btn" onclick="addSlot()">
-                    + Ajouter un élément
-                </button>
+    <main class="config-main">
+        <div class="config-grid">
+            <!-- Left column: Program identity card -->
+            <section class="config-card config-card--identity">
+                <h2 class="config-card__title">Identité</h2>
+                
+                <!-- Program name input -->
+                <div class="program-name-wrap">
+                    <label class="config-label" for="input-program-name">Nom du programme</label>
+                    <input type="text" id="input-program-name" class="config-input" placeholder="Nom du programme" autocomplete="off">
+                </div>
+
+                <!-- Cover image area -->
+                <div class="cover-image-wrap">
+                    <div class="cover-image" id="cover-image" role="img" aria-label="Image de couverture du programme">
+                        <span class="material-symbols-outlined cover-image-placeholder" aria-hidden="true">image</span>
+                        <img class="cover-image-img" id="cover-image-img" src="" alt="" hidden>
+                    </div>
+                    <input type="file" id="cover-input" accept="image/*" hidden>
+                    <button type="button" class="btn btn--yellow btn--pill" id="btn-change-cover">Changer l'image</button>
+                </div>
+
+                <!-- Target tags -->
+                <h3 class="config-card__subtitle">Accessible aux profils</h3>
+                <div class="tag-chips" id="tag-chips">
+                    <button type="button" class="tag-chip" data-tag="Dyspraxie">Dyspraxie</button>
+                    <button type="button" class="tag-chip" data-tag="TDAH">TDAH</button>
+                    <button type="button" class="tag-chip" data-tag="Dysgraphie">Dysgraphie</button>
+                    <button type="button" class="tag-chip" data-tag="Dyslexie">Dyslexie</button>
+                    <button type="button" class="tag-chip" data-tag="Troubles de l'attention">Troubles de l'attention</button>
+                    <button type="button" class="tag-chip" data-tag="Troubles moteurs">Troubles moteurs</button>
+                    <button type="button" class="tag-chip tag-chip--add" id="tag-add" aria-label="Ajouter un tag">+</button>
+                </div>
+            </section>
+
+            <!-- Right column: Sequence + Library -->
+            <section class="config-card config-card--right">
+                <!-- Sub-panel A: Sequence -->
+                <div class="sequence-panel">
+                    <h2 class="config-card__title">Séquence de mouvements</h2>
+                    <div class="sequence-list" id="sequence-list"></div>
+                    <div class="add-movement-strip" id="add-movement-strip">
+                        <span class="material-symbols-outlined">add</span>
+                        <span>Ajouter un mouvement</span>
+                    </div>
+                </div>
+
+                <!-- Sub-panel B: Library -->
+                <div class="library-panel">
+                    <h2 class="config-card__title">Bibliothèque de mouvements</h2>
+                    <div class="library-scroll" id="library-scroll"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal: Add new movement -->
+    <div class="modal-overlay" id="modal-new-movement" aria-hidden="true">
+        <div class="modal" role="dialog" aria-labelledby="modal-new-movement-title">
+            <button type="button" class="modal__close" id="modal-new-movement-close" aria-label="Fermer">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h3 id="modal-new-movement-title" class="modal__title">Nouveau mouvement</h3>
+            <div class="modal__content">
+                <label class="config-label" for="input-movement-name">Nom du mouvement</label>
+                <input type="text" id="input-movement-name" class="config-input" placeholder="Nom du mouvement">
+                <label class="config-label" for="input-movement-image" style="margin-top: 1rem;">Image (optionnel)</label>
+                <input type="file" id="input-movement-image" accept="image/*" style="padding: 0.5rem;">
+            </div>
+            <div class="modal__actions">
+                <button type="button" class="btn btn--outline btn--pill" id="modal-new-movement-cancel">Annuler</button>
+                <button type="button" class="btn btn--rose btn--pill" id="modal-new-movement-confirm">Confirmer</button>
             </div>
         </div>
-        <script src="../scripts/config-program.js"></script>
-        <script src="../scripts/main.js"></script>
-    </body>
+    </div>
+
+    <footer class="config-footer">
+        <a href="select-program.html" class="btn btn--outline btn--pill">Annuler</a>
+        <button type="button" class="btn btn--rose btn--pill" id="btn-save">Enregistrer</button>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/config-program.js"></script>
+</body>
 </html>

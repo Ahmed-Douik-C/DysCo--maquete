@@ -1,323 +1,641 @@
-/* ── Reset & base ───────────────────────────────────────── */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+/* config-program.css — uses :root from main.css */
+
+.session-status {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     margin: 0;
-    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 body {
-    font-family:
-        system-ui,
-        -apple-system,
-        sans-serif;
-    color: #1a1a18;
-    min-height: 100vh;
-    padding: 2rem;
-}
-
-/* ── Layout ─────────────────────────────────────────────── */
-.layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    max-width: 860px;
-    margin: 0 auto;
-}
-
-.panel {
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 0;
 }
 
-/* ── Panel title ────────────────────────────────────────── */
-.panel-title {
-    font-size: 11px;
-    font-weight: 600;
-    color: #888780;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-/* ── Gallery grid ───────────────────────────────────────── */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-}
-
-.gallery-item {
-    aspect-ratio: 1;
-    border-radius: 8px;
+.config-main {
+    flex: 1;
+    min-height: 0;
     overflow: hidden;
-    cursor: grab;
-    border: 1px solid rgba(0, 0, 0, 1);
-    position: relative;
-    transition:
-        transform 0.15s ease,
-        border-color 0.15s ease;
+    max-width: 100%;
+    margin: 0;
+    padding: 1.5rem;
 }
 
-.gallery-item:active {
+.config-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 2rem;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .config-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cards */
+.config-card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    padding: 1.5rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.config-card__title {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0b1b2a;
+}
+
+.config-card__subtitle {
+    margin: 1.25rem 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+/* Identity card: program name */
+.program-name-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Cover image */
+.cover-image-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.cover-image {
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
+    min-height: 160px;
+    border-radius: 12px;
+    border: 3px dashed rgba(0, 0, 0, 0.15);
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cover-image-placeholder {
+    font-size: 3rem;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.cover-image-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cover-image-img:not([hidden]) {
+    display: block;
+}
+
+.cover-image-img:not([hidden]) ~ .cover-image-placeholder {
+    display: none;
+}
+
+/* Inputs and labels */
+.config-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1d1d1d;
+}
+
+.config-input {
+    border: 3px solid rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.config-input:focus {
+    border-color: var(--color-rose);
+    box-shadow: 0 0 0 3px rgba(234, 91, 111, 0.35);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.25rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 3px solid rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn--pill {
+    border-radius: 999px;
+}
+
+.btn--yellow {
+    background: var(--color-yellow);
+    color: #1d1d1d;
+}
+
+.btn--rose {
+    background: var(--color-rose);
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.btn--rose:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+}
+
+.btn--outline {
+    background: transparent;
+    color: #1d1d1d;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+.btn--outline:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Tag chips */
+.tag-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tag-chip {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    color: #1d1d1d;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.tag-chip:hover {
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+.tag-chip--active {
+    background: var(--color-rose);
+    color: #fff;
+    border-color: var(--color-rose);
+}
+
+.tag-chip--add {
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+/* Right column panels */
+.config-card--right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0;
+    overflow: visible;
+}
+
+.sequence-panel,
+.library-panel {
+    padding: 1.5rem;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sequence-panel {
+    overflow-y: auto;
+}
+
+/* Sequence list */
+.sequence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding-right: 8px;
+    overflow-y: auto;
+    min-height: 88px;
+}
+
+.sequence-list.drag-over {
+    background: rgba(119, 190, 240, 0.08);
+    border-radius: 12px;
+    outline: 2px dashed var(--color-blue);
+    outline-offset: -2px;
+}
+
+.sequence-list.drag-over--empty::after {
+    content: "Déposez un mouvement ici";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem;
+    color: rgba(0, 0, 0, 0.35);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.sequence-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sequence-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+}
+
+.sequence-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+.sequence-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Movement strip in sequence */
+.movement-strip {
+    background: white;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 0, 0, 0.10);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s, transform 0.2s;
+    user-select: none;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.movement-strip.dragging {
+    opacity: 0.45;
+    transform: scale(0.97);
+}
+
+.movement-strip.drag-over-after {
+    border-bottom: 3px dashed var(--color-blue);
+    padding-bottom: 9px;
+}
+
+/* Drag handle */
+.movement-drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    color: rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
+}
+
+.movement-drag-handle:active {
     cursor: grabbing;
 }
 
-.gallery-item:hover {
-    transform: scale(1.04);
-    border-color: rgba(0, 0, 0, 1);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    pointer-events: none;
-}
-
-.gallery-item.used {
-    opacity: 0.32;
-    pointer-events: none;
-}
-
-/* Checkmark badge on used images */
-.gallery-item .badge {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #1d9e75;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: #fff;
-    font-weight: 700;
-}
-
-.gallery-item.used .badge {
-    display: flex;
-}
-
-/* ── Gallery items : image ou placeholder ────────────────── */
-.gallery-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.gallery-item .placeholder-label {
-    font-size: 10px;
-    color: #000000;
-    text-align: center;
-    padding: 4px;
-    line-height: 1.3;
-    pointer-events: none;
-    user-select: none;
-}
-
-/* Thumbnail placeholder dans la liste */
-.slot-thumb.placeholder-thumb {
-    background: #f0ede8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.slot-thumb.placeholder-thumb span {
-    font-size: 9px;
-    color: #b4b2a9;
-    text-align: center;
-    padding: 2px;
-    line-height: 1.2;
-}
-
-/* ── Add gallery button ──────────────────────────────────── */
-.add-gallery-btn {
-    margin-top: 10px;
-    border: 1px solid rgba(0, 0, 0, 1);
-    background: transparent;
+/* Movement thumbnail */
+.movement-thumb {
+    width: 48px;
+    height: 48px;
     border-radius: 8px;
-    padding: 9px 16px;
-    font-size: 13px;
-    color: #000000;
-    cursor: pointer;
-    width: 100%;
-    font-family: inherit;
-    transition:
-        background 0.12s ease,
-        color 0.12s ease;
-}
-
-.add-gallery-btn:hover {
-    background: #fff;
-    color: #1a1a18;
-    border-color: rgba(0, 0, 0, 1);
-}
-
-/* ── List slots ─────────────────────────────────────────── */
-.list-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 10px;
-}
-
-.list-slot {
-    border: 1.5px dashed rgba(0, 0, 0, 1);
-    border-radius: 12px;
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    gap: 12px;
-    transition:
-        border-color 0.15s ease,
-        background 0.15s ease;
-    cursor: pointer;
-    background: #fff;
-}
-
-.list-slot.drag-over {
-    border-color: #378add;
-    background: #ebf4fd;
-}
-
-.list-slot.filled {
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 1);
-    background: #94d2a5;
-    cursor: default;
-}
-
-/* Thumbnail inside a filled slot */
-.slot-thumb {
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
+    background: #f0f0f0;
+    border: none;
     overflow: hidden;
     flex-shrink: 0;
-}
-
-.slot-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Empty slot placeholder icon */
-.slot-empty-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
-    background: #f0ede8;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
 
-.slot-empty-icon svg {
-    opacity: 0.28;
-    color: #1a1a18;
+.movement-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Text area inside a slot */
-.slot-info {
+.movement-thumb-placeholder {
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+/* Movement name (editable) */
+.movement-name {
     flex: 1;
     min-width: 0;
-}
-
-.slot-label input {
-    width: 100%;
-    border: none;
-    background: transparent;
-    font-size: 13px;
-    font-weight: 500;
-    color: #1a1a18;
-    font-family: inherit;
-    outline: none;
-}
-
-.slot-label input::placeholder {
-    color: #000000;
-    font-weight: 400;
-}
-
-.slot-sublabel {
-    font-size: 11px;
-    color: #b4b2a9;
-    margin-top: 3px;
-    white-space: nowrap;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #1d1d1d;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* Remove button */
-.slot-remove {
-    width: 24px;
-    height: 24px;
+.movement-name[contenteditable="true"] {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 2px;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+/* Movement remove button */
+.movement-remove {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background: #f0ede8;
-    border: 1px solid rgba(0, 0, 0, 1);
+    background: transparent;
+    border: none;
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
+    color: var(--color-rose);
     flex-shrink: 0;
-    transition:
-        background 0.12s ease,
-        border-color 0.12s ease;
+    transition: background 0.2s;
 }
 
-.slot-remove:hover {
-    background: #fde8e8;
-    border-color: #f09595;
-}
-
-.slot-remove:hover svg {
-    stroke: #a32d2d;
-}
-
-.slot-remove svg {
-    display: block;
-}
-
-.list-slot.filled .slot-remove {
+.movement-strip:hover .movement-remove {
     display: flex;
 }
 
-/* ── Add slot button ────────────────────────────────────── */
-.add-slot-btn {
-    border: 1px solid rgba(0, 0, 0, 1);
-    background: transparent;
-    border-radius: 8px;
-    padding: 9px 16px;
-    font-size: 13px;
-    color: #888780;
+.movement-remove:hover {
+    background: rgba(234, 91, 111, 0.1);
+}
+
+/* Add movement strip */
+.add-movement-strip {
+    background: white;
+    border-radius: 12px;
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #1d1d1d;
+    flex-shrink: 0;
     width: 100%;
-    font-family: inherit;
-    transition:
-        background 0.12s ease,
-        color 0.12s ease;
+    box-sizing: border-box;
 }
 
-.add-slot-btn:hover {
+.add-movement-strip:hover {
+    transform: scale(1.02);
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Library scroll */
+.library-scroll {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    overflow-y: auto;
+    padding-bottom: 12px;
+    scroll-behavior: smooth;
+    flex: 1;
+    max-height: 300px;
+    align-content: flex-start;
+}
+
+.library-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.library-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+}
+
+.library-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+.library-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Library card */
+.library-card {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
     background: #fff;
-    color: #1a1a18;
-    border-color: rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 600px) {
-    .layout {
-        grid-template-columns: 1fr;
-    }
+.library-card:active {
+    cursor: grabbing;
+}
+
+.library-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.library-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.library-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    text-align: center;
+}
+
+.library-card-icon {
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.library-card-name {
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: #1d1d1d;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+}
+
+/* Add library card */
+.library-card--add {
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.library-card--add:hover {
+    border-color: var(--color-yellow);
+    background: rgba(255, 203, 97, 0.1);
+}
+
+.library-card--add .library-card-icon {
+    font-size: 36px;
+    color: var(--color-yellow);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.modal-overlay[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    position: relative;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+    padding: 2rem;
+    max-width: 420px;
+    width: 100%;
+}
+
+.modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1d1d1d;
+    transition: background 0.2s;
+}
+
+.modal__close:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.modal__close .material-symbols-outlined {
+    font-size: 24px;
+}
+
+.modal__title {
+    margin: 0 0 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0b1b2a;
+}
+
+.modal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.modal__actions .btn {
+    width: 100%;
+}
+
+/* Footer */
+.config-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.5rem;
+    background: var(--color-blue);
+    border-top: 3px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.config-footer .btn {
+    min-width: 140px;
+}
+
+/* Drag placeholder */
+.drag-placeholder {
+    height: 88px;
+    border: 3px dashed var(--color-blue);
+    border-radius: 16px;
+    background: rgba(119, 190, 240, 0.1);
+    margin: 0 0 12px 0;
 }
