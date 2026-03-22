@@ -90,7 +90,7 @@ boutonsPoints.forEach((bouton) => {
 updateMoveCounter();
 
 // Chrono
-let EXO_DURATION = 5; 
+let EXO_DURATION = 15; 
 let temps = EXO_DURATION;
 let elapsedSeconds = 0;
 const affichageTimer = document.getElementById('valeurTimer');

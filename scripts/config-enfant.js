@@ -175,12 +175,15 @@
                 if (el.textContent) assignedPrograms.push(el.textContent.trim());
             });
 
+            var timePerExercise = parseInt(document.getElementById('time-input')?.value, 10) || 15;
+
             var profile = {
                 firstName: firstName,
                 lastName: lastName,
                 dob: dob,
                 tags: activeTags,
-                assignedPrograms: assignedPrograms
+                assignedPrograms: assignedPrograms,
+                timePerExercise: timePerExercise
             };
 
             console.log(profile);

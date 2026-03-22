@@ -387,3 +387,57 @@
 .config-footer .btn {
     min-width: 140px;
 }
+
+/* ── Temps par exercice ─────────────────────────────────── */
+.time-per-exercise {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.time-per-exercise label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #888780;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.time-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-input-row input[type="number"] {
+  width: 72px;
+  padding: 10px 12px;
+  border: 3px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  color: #1a1a18;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s ease;
+  -moz-appearance: textfield;
+}
+
+.time-input-row input[type="number"]:focus {
+  border-color: var(--color-rose);
+}
+
+/* Hide native spinner arrows */
+.time-input-row input[type="number"]::-webkit-outer-spin-button,
+.time-input-row input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.time-input-row span {
+  font-size: 1rem;
+  color: #888780;
+  font-weight: 600;
+}
