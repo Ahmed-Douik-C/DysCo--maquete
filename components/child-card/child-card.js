@@ -137,11 +137,11 @@ class ChildCard extends HTMLElement {
           window.location.href = target;
         }
 
-        if (action === 'play') {
-          sessionStorage.setItem('selectedProgram', this.getAttribute('child-name') || 'Programme');
-          const target = el.getAttribute('href') || this.getAttribute('play-href') || 'select-program.html';
-          window.location.href = target;
-        }
+          if (action === 'play') {
+              sessionStorage.setItem('selectedProgram', this.getAttribute('child-name') || 'Programme');
+              const target = this.getAttribute('play-href') || el.getAttribute('href') || 'select-program.html';
+              window.location.href = target;
+          }
 
         if (action === 'settings') {
           const explicitHref = this.getAttribute('settings-href');
