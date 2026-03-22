@@ -1,5 +1,20 @@
+//API POUR PHOTOS
 async function fetchExercicesAvecPhotos() {
   const BASE_URL = "https://wger.de/api/v2/exerciseinfo/";
+  const WGER_ORIGIN = "https://wger.de";
+
+  function toAbsoluteWgerUrl(maybeRelativeUrl) {
+    if (!maybeRelativeUrl || typeof maybeRelativeUrl !== "string") {
+      return "";
+    }
+    if (maybeRelativeUrl.startsWith("//")) {
+      return `https:${maybeRelativeUrl}`;
+    }
+    if (maybeRelativeUrl.startsWith("/")) {
+      return `${WGER_ORIGIN}${maybeRelativeUrl}`;
+    }
+    return maybeRelativeUrl;
+  }
   
   // On retire language__code=fr de l'URL !
   const equipementParams = [7, 4, 5, 11].map(id => `equipment=${id}`).join("&");
@@ -43,8 +58,10 @@ async function fetchExercicesAvecPhotos() {
       musclesSecondaires: ex.muscles_secondary.map(m => m.name),
       equipement: ex.equipment.map(e => e.name),
       images: {
-        principale: imageMain.image,
-        autres: ex.images.filter(img => !img.is_main).map(img => img.image),
+        principale: toAbsoluteWgerUrl(imageMain.image),
+        autres: ex.images
+          .filter(img => !img.is_main)
+          .map(img => toAbsoluteWgerUrl(img.image)),
       },
     };
   });

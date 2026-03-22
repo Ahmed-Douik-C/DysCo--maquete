@@ -99,6 +99,23 @@ header {
     text-align: center;
 }
 
+.camera-wrap {
+  position: relative;
+  display: inline-block; /* ou block, selon ton layout */
+}
+
+#camera {
+  display: block;
+}
+
+#camera-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* ou contain selon l’effet voulu */
+  display: none;       /* caché tant qu’on n’a pas capturé */
+}
 
 #fin{
     display: block;

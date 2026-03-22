@@ -13,7 +13,10 @@
 </header>
 <main class="content">
     <p id="encouragement"></p>
+    <div id="camera_div" class="camera-wrap">
     <video id="camera" autoplay playsinline></video>
+    <img id="camera-overlay" alt="Photo capturée" />
+    </div>
     <div id = "Infos" >
         <h2 class="titre-score">Score : <span id="valeurScore">0</span></h2>
         <ul class = "liste-score">
@@ -25,7 +28,7 @@
         </ul>
         <h2>Timer : <span id="valeurTimer">0</span></h2>
         <a href="select-program.html">
-        <button id="fin">Finir le programme</button>
+        <button id="fin" class="btn">Finir le programme</button>
         </a>
     </div>
     <div id="image"></div>
