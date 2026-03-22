@@ -220,6 +220,14 @@
     background: #fff;
     border: 4px solid rgba(0, 0, 0, 0.18);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.program-card__inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .program-card__name {
