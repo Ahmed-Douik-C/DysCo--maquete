@@ -65,41 +65,55 @@ function finishGame() {
         finalScore.textContent = `Bravo ! Score : ${scoreTotal}`;
     }
 }
+boutonsPoints.forEach((bouton) => {
+  bouton.addEventListener('click', function () {
+    if (moveCount >= maxMoves) return;
 
-boutonsPoints.forEach(function(bouton) {
-    bouton.addEventListener('click', function() {
-        if (moveCount >= maxMoves) {
-            return;
-        }
-        const pointsAjoutes = parseInt(this.innerText);
+    if (roundState !== "awaitingScore") return;
 
-        scoreTotal += pointsAjoutes;
-        affichageScore.innerText = scoreTotal;
-        moveCount += 1;
-        updateMoveCounter();
+    const pointsAjoutes = parseInt(this.innerText, 10);
+    scoreTotal += pointsAjoutes;
+    affichageScore.innerText = scoreTotal;
 
-        if (typeof window.setRandomProgramImage === 'function') {
-            window.setRandomProgramImage();
-        }
+    moveCount += 1;
+    updateMoveCounter();
+    showEncouragement();
 
-        showEncouragement();
-        hideCaptured();
-        demarrerTimer();
+    if (moveCount >= maxMoves) {
+      finishGame();
+      return;
+    }
 
-        if (moveCount >= maxMoves) {
-            finishGame();
-        }
-    });
+    startRound(); // nouvelle manche: nouveau timer, nouvelle image, etc.
+  });
 });
-
 updateMoveCounter();
 
 // Chrono
-let EXO_DURATION = 15; 
-
+let EXO_DURATION = 5; 
 let temps = EXO_DURATION;
 let elapsedSeconds = 0;
 const affichageTimer = document.getElementById('valeurTimer');
+let roundState = "running";
+let roundEnded = false;
+
+function startRound() {
+  roundEnded = false;
+  roundState = "running";
+
+  hideCaptured(); 
+  setRandomProgramImage?.(); 
+  demarrerTimer();
+}
+
+function endRound() {
+  if (roundEnded) return;
+  roundEnded = true;
+  roundState = "awaitingScore";
+
+  endTimer();
+  captureAndStore();
+}
 
 function renderTimerValue(totalSeconds) {
     if (!affichageTimer) {
@@ -116,27 +130,32 @@ function renderTimerValue(totalSeconds) {
 }
 
 function demarrerTimer() {
-    if (!affichageTimer) {
-        return;
-    }
-    temps = EXO_DURATION;
-    renderTimerValue(temps);
-    timerId = setInterval(function() {
-        elapsedSeconds += 1;
-        temps -= 1;
-        renderTimerValue(temps);
-        if(temps<0){
-            endRound();
-            endTimer();
-        }
-    }, 1000);
-}
+  if (!affichageTimer) return;
 
-function endTimer(){
+  if (timerId) {
     clearInterval(timerId);
     timerId = null;
+  }
+
+  temps = EXO_DURATION;
+  renderTimerValue(temps);
+
+  timerId = setInterval(() => {
+    elapsedSeconds += 1;
+    temps -= 1;
+    renderTimerValue(temps);
+
+    if (temps <= 0) {
+      endRound();
+    }
+  }, 1000);
 }
 
+function endTimer() {
+  if (!timerId) return;
+  clearInterval(timerId);
+  timerId = null;
+}
 demarrerTimer();
 function renderProgramImage(imageUrl) {
     const container = document.getElementById('image');
@@ -192,9 +211,4 @@ function hideCaptured() {
   overlayImg.style.display = 'none';
   overlayImg.src = '';
   sessionStorage.removeItem('lastPhotoDataUrl'); // optionnel
-}
-
-    
-function endRound(){
-    captureAndStore()
 }
