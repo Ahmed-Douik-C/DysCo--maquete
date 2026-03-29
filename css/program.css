@@ -67,7 +67,7 @@ header {
 
 #camera {
     width: auto;
-    max-width: 60em;
+    max-width: 45em;
     height: auto;
     border: 2px solid var(--color-rose);
     border-radius: 8px;
@@ -121,7 +121,7 @@ header {
     display: block;
     margin: 0px auto 0;
     width: 100%;
-    max-width: 320px;
+    max-width: 150px;
     height: 3em;
     border-radius: 25px;
     background-color: var(--color-rose);
@@ -129,7 +129,23 @@ header {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: solid 3px black;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+#btn-capture{
+    display: block;
+    margin: 0px auto 0;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 150px;
+    height: 3em;
+    border-radius: 25px;
+    background-color: var(--color-yellow);
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: solid 3px black;
+    cursor: pointer;
+    font-size: 0.8rem;
     text-decoration: none;
 }
 
