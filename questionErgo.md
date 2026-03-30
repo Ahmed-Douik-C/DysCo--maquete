@@ -16,3 +16,4 @@
 - Faut -il 2 manières différentes de faire pratiquer : 1 pour dyspraxie et 1 pour TDAH ?
 - Comment rendre Activité ludique ?
 - Réaliste de faire une partie autonome ?
+- Assistance des parents, différences avec les ergos ?
