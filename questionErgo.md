@@ -3,14 +3,20 @@
 - Photo Utilité ?
 - Photo pro/fun et comment faire fun ?
 - Evalution commune ? débrief fin du programme ou fin d'un mouvement ?
+  - Pertinent : comme ça l'ergo peut le corriger pour que l'enfant s'améliore. Peut durer un peu de temps.
 - Association avec des objets (Utilisation d'objet) ? (pas forcément dans l'image d'illustration)
+  - Oui : balle, frisbee (si possible)
 - Choix des programmes : pertinance des programmes généraux dans la sélection ?
 - Mouvement mal exécuté ? quels genres d'infos sur ces mouvements ?
 - Image d'illustration, comment avoir une base de donnée cohérente ?
+  - trouver une BD libre de droit en ligne, selon elle ça existe
 - Classification des programmes / gestes ?
+  - Pas besoin de classification des troubles — parce que l'ergo connait déjà l'enfant, mais plutôt sur les caractéristiques genre motricité fine…
 - Adaptation de geste (sous variantes) ? (je ne sais pas si cela est possible à implémenter)
-- Validation des gestes général comme sur la maquette ou plutôt notation de plusieurs critères ?
+- Validation des gestes généraux comme sur la maquette ou plutôt notation de plusieurs critères ?
+  - Pas besoin de noter sur plusieurs critères, c'est pas nécéssaire selon elle
 - Progression selon les critères (suite de la question précédente)?
+  - idem
 - Comment juger la progression et/ou la régression ?
 - Comment éviter la frustration pour les enfants ?
 - Faut -il 2 manières différentes de faire pratiquer : 1 pour dyspraxie et 1 pour TDAH ?
