@@ -84,10 +84,11 @@ boutonsPoints.forEach((bouton) => {
       return;
     }
 
-    startRound(); // nouvelle manche: nouveau timer, nouvelle image, etc.
+    startRound();
   });
 });
 updateMoveCounter();
+
 
 // Chrono
 let EXO_DURATION = 15; 
@@ -102,7 +103,7 @@ function startRound() {
   roundState = "running";
 
   hideCaptured(); 
-  setRandomProgramImage?.(); 
+  setRandomProgramImage();
   demarrerTimer();
 }
 
@@ -184,6 +185,10 @@ function setRandomProgramImage() {
 const video = document.getElementById('camera');
 const btnCapture = document.getElementById('btn-capture');
 const overlayImg = document.getElementById('camera-overlay');
+
+if (btnCapture) {
+  btnCapture.addEventListener('click', endRound);
+}
 
 function showCaptured(dataUrl) {
   if (!overlayImg || !dataUrl) return;
